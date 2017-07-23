@@ -9,6 +9,7 @@ bevy.json
 js/deps/*
 !js/deps/highlight.js
 js/**/*.map
+js/*/linter-rules/
 js/core/aria.js
 js/core/base-runner.js
 js/core/beautify-options.js
@@ -33,6 +34,7 @@ js/core/issues-notes.js
 js/core/jquery-enhanced.js
 js/core/l10n.js
 js/core/link-to-dfn.js
+js/core/linter.js
 js/core/location-hash.js
 js/core/markdown.js
 js/core/override-configuration.js

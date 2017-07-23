@@ -87,7 +87,7 @@ define(
     "w3c/seo",
     "core/highlight",
     "core/webidl-clipboard",
-    /*Linter must be the last thing to run*/
+    "core/linter",
     "w3c/linter",
   ],
   function(domReady, runner, ui) {
