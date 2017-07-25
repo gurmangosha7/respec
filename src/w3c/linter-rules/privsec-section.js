@@ -34,7 +34,10 @@ function hasPriSecConsiderations(doc) {
   });
 }
 
-export function lint({ doc, conf }) {
+export function lint({ doc, conf } = { [rule]: false, doc: document }) {
+  if (conf[rule] === false) {
+    return;
+  }
   const result = [];
   if (conf.isRecTrack && !hasPriSecConsiderations(doc)) {
     result.push({

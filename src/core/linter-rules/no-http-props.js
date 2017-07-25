@@ -20,7 +20,10 @@ const meta = {
 // Fall back to english, if language is missing
 const lang = defaultLang in meta ? defaultLang : "en";
 
-export function lint({ conf, doc }) {
+export function lint({ doc, conf } = { [rule]: false, doc: document }) {
+  if (conf[rule] === false) {
+    return;
+  }
   // We can only really perform this check over http/https
   if (!doc.location.href.startsWith("http")) {
     return;

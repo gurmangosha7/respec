@@ -16,7 +16,10 @@ const hasNoHeading = ({ firstElementChild: elem }) => {
   return elem === null || /^h[1-6]$/.test(elem.localName) === false;
 };
 
-export function lint({ doc }) {
+export function lint({ doc, conf } = { [rule]: false, doc: document }) {
+  if (conf[rule] === false) {
+    return;
+  }
   const result = [];
   const offendingElements = Array.from(doc.querySelectorAll("section")).filter(
     hasNoHeading
