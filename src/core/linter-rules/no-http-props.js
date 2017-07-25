@@ -1,3 +1,8 @@
+/**
+ * Linter rule "no-https-props". Makes sure the there are no URLs that
+ * start with http:// in the ReSpec config.
+ */
+
 import { lang as defaultLang } from "core/l10n";
 
 const rule = "no-https-props";
@@ -20,8 +25,14 @@ const meta = {
 // Fall back to english, if language is missing
 const lang = defaultLang in meta ? defaultLang : "en";
 
-export function lint({ doc, conf } = { [rule]: false, doc: document }) {
-  if (conf[rule] === false) {
+/**
+ * Runs linter rule.
+ *
+ * @param {Object} config The ReSpec config.
+ * @param  {Document} doc The document to be checked.
+ */
+export function lint(config = { lint: { [rule]: false } }, doc = document) {
+  if (lint === false || !lint[rule]) {
     return;
   }
   // We can only really perform this check over http/https

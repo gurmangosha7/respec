@@ -1,11 +1,10 @@
 /**
  * Checks that there is a section that has at least privacy and/or
- * security and considerations. 
+ * security and considerations.
  *
  * The rule is "privacy" or "security", and "considerations", in any order,
  * case-insensitive, multi-line check.
  *
- * @param  {Document} doc The document to be checked.
  */
 import { lang as defaultLang } from "../l10n";
 
@@ -34,8 +33,14 @@ function hasPriSecConsiderations(doc) {
   });
 }
 
-export function lint({ doc, conf } = { [rule]: false, doc: document }) {
-  if (conf[rule] === false) {
+/**
+ * Runs linter rule.
+ *
+ * @param {Object} config The ReSpec config.
+ * @param  {Document} doc The document to be checked.
+ */
+export function lint(config = { lint: { [rule]: false } }, doc = document) {
+  if (lint === false || !lint[rule]) {
     return;
   }
   const result = [];

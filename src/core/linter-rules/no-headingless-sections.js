@@ -1,7 +1,11 @@
+/**
+ * Linter rule "no-headingless-sections".
+ *
+ * Checks that there are no sections in the document that don't start
+ * with a heading element (h1-6).
+ */
 import { lang as defaultLang } from "../l10n";
-
 const rule = "no-headingless-sections";
-
 const meta = {
   en: {
     description: "All sections must start with a `h2-6` element.",
@@ -11,13 +15,18 @@ const meta = {
 };
 // Fall back to english, if language is missing
 const lang = defaultLang in meta ? defaultLang : "en";
-
 const hasNoHeading = ({ firstElementChild: elem }) => {
   return elem === null || /^h[1-6]$/.test(elem.localName) === false;
 };
 
-export function lint({ doc, conf } = { [rule]: false, doc: document }) {
-  if (conf[rule] === false) {
+/**
+ * Runs linter rule.
+ *
+ * @param {Object} config The ReSpec config.
+ * @param  {Document} doc The document to be checked.
+ */
+export function lint(config = { lint: { [rule]: false } }, doc = document) {
+  if (lint === false || !lint[rule]) {
     return;
   }
   const result = [];
