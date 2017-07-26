@@ -31,8 +31,8 @@ const lang = defaultLang in meta ? defaultLang : "en";
  * @param {Object} config The ReSpec config.
  * @param  {Document} doc The document to be checked.
  */
-export function lint(config = { lint: { [rule]: false } }, doc = document) {
-  if (lint === false || !lint[rule]) {
+export function lint(doc = document, conf = { lint: { [rule]: false } }) {
+  if (conf.lint === false || !conf.lint[rule]) {
     return;
   }
   // We can only really perform this check over http/https

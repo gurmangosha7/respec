@@ -31,8 +31,8 @@ const hasNoHeading = ({ firstElementChild: elem }) => {
  * @param {Object} config The ReSpec config.
  * @param  {Document} doc The document to be checked.
  */
-export function lint(config = { lint: { [rule]: false } }, doc = document) {
-  if (lint === false || !lint[rule]) {
+export function lint(doc = document, conf = { lint: { [rule]: false } }) {
+  if (conf.lint === false || !conf.lint[rule]) {
     return;
   }
   const result = [];

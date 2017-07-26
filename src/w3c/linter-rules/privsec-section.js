@@ -12,9 +12,11 @@ const rule = "privsec-section";
 
 const meta = {
   en: {
-    description: "Document must a Privacy and/or Security Considerations section.",
+    description:
+      "Document must a Privacy and/or Security Considerations section.",
     howToFix: "Add a privacy and/or security considerations section.",
-    help: "See the [Self-Review Questionnaire](https://w3ctag.github.io/security-questionnaire/).",
+    help:
+      "See the [Self-Review Questionnaire](https://w3ctag.github.io/security-questionnaire/).",
   },
 };
 
@@ -39,8 +41,8 @@ function hasPriSecConsiderations(doc) {
  * @param {Object} config The ReSpec config.
  * @param  {Document} doc The document to be checked.
  */
-export function lint(config = { lint: { [rule]: false } }, doc = document) {
-  if (lint === false || !lint[rule]) {
+export function lint(doc = document, conf = { lint: { [rule]: false } }) {
+  if (conf.lint === false || !conf.lint[rule]) {
     return;
   }
   const result = [];

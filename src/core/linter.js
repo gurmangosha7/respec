@@ -10,7 +10,7 @@ import { pub } from "core/pubsubhub";
 import { lint as noHttpProps } from "core/linter-rules/no-http-props";
 import { lint as noHlessSecs } from "core/linter-rules/no-headingless-sections";
 
-export const name = "core/linter"
+export const name = "core/linter";
 
 const privates = new WeakMap();
 
@@ -28,7 +28,7 @@ class Linter {
   }
   async lint(conf, doc = window.document) {
     const promisesToLint = [...privates.get(this).rules].map(
-      async lint =>  await lint({ doc, conf })
+      async lint => await lint(doc, conf)
     );
     const results = await Promise.all(promisesToLint);
     return results.reduce(
@@ -59,7 +59,7 @@ export async function run(conf, doc, cb) {
   }
   cb(); // continue other processing
   await document.respecReady;
-  const results = await linter.lint(conf);
+  const results = await linter.lint(doc, conf);
   results
     .map(result => {
       const output = { ...baseResult, ...result };
